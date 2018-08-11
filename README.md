@@ -1,37 +1,33 @@
-## Welcome to GitHub Pages
+# Python入門
+## Pythonという言語
+Pythonというのはプログラミング言語の一つで、
+特徴としては以下が挙げられます。
+* インタプリタ言語
+  * 一行読んで、一行実行するタイプのプログラミング言語
+* 可読性を重視した設計
+* 人工知能とかでよく使われる
 
-You can use the [editor on GitHub](https://github.com/akakou/learn-python/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Pythonをインストールしよう
+以下のサイトからダウンロードしてインストールして下さい。  
+`Add Python 3.x to PATH`にはチェックをつけましょう。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<iframe src="https://www.python.org/downloads/windows/"></iframe>
 
-### Markdown
+## Pythonを実行しよう
+### IDLEの起動
+Winキーを押して`idle`と入力してIDLEを起動しましょう。  
+IDLEとはPython(Windows版)に標準でついてくるエディタです。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+### コードを書く
+メニューバーの左上にある`File -> New File`でファイルを開いて下さい。
+新しいファイルを開いたら（ウィンドウが立ち上がってる）と思うので、そこに以下のコードを書いて下さい。
+```py
+print('hello world !')
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### 実行
+ファイルを保存してから、F5を押して下さい。
+> hello world !
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/akakou/learn-python/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+と表示されたでしょうか？
+もしそう表示されていたら成功です。  
