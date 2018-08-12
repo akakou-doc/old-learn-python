@@ -4,8 +4,8 @@
 ビジネス用のコミュニケーションツールです。
 
 ## SlackBotとは
-Slack用のBotです。
-応用すれば以下に使えます。
+Slack用のBotです。  
+応用すれば以下のように使えます。
 * 好きなサイトの更新を通知する
 * 不審なログを通知する
 
@@ -26,7 +26,7 @@ pip install slackclient
 ```
 
 ## Let's Hack
-基本的に詳しくは[こちら](https://github.com/slackapi/python-slackclient)ということでお願いします。
+基本的に詳しくは[こちら](https://github.com/slackapi/python-slackclient)ということでお願いします。  
 
 ### メッセージの送信
 
@@ -54,6 +54,8 @@ slack_token = 'BotsのAPIキーをここに貼る'
 sc = SlackClient(slack_token)
 
 if not sc.rtm_connect():
+    # コネクションに失敗したら
+    # エラーを吐いて終了
     print("Connection Failed")
     sys.exit()
 
@@ -73,11 +75,11 @@ from slackclient import SlackClient
 slack_token = 'BotsのAPIキーをここに貼る'
 sc = SlackClient(slack_token)
 
-
 if not sc.rtm_connect():
+    # コネクションに失敗したら
+    # エラーを吐いて終了
     print("Connection Failed")
-     sys.exit()
-
+    sys.exit()
 
 while sc.server.connected is True:
     # メッセージを取得
@@ -111,6 +113,8 @@ slack_token = 'BotsのAPIキーをここに貼る'
 sc = SlackClient(slack_token)
 
 if not sc.rtm_connect():
+    # コネクションに失敗したら
+    # エラーを吐いて終了
     print("Connection Failed")
     sys.exit()
 
@@ -139,11 +143,11 @@ while sc.server.connected is True:
         sc.api_call(
             "chat.postMessage",
             channel=message['channel'],
-            text="いいぞぉ〜"
+            text="いいぞぉ〜（ ＾ω＾）"
         )
 
         print("Send !")
 
 ```
 
-
+Pythonはいいぞぉ〜（ ＾ω＾）
