@@ -94,7 +94,7 @@ while sc.server.connected is True:
     for message in message_list:
         if message["type"] != 'message':
             # メッセージのタイプが
-            # messageじゃなかったら無視
+            # messageでなかったら無視
             continue
 
         print(message["text"])
@@ -131,12 +131,12 @@ while sc.server.connected is True:
     for message in message_list:
         if message["type"] != 'message':
             # メッセージのタイプが
-            # messageじゃなかったら無視
+            # messageでなかったら無視
             continue
 
         if message["text"] != "python":
             # メッセージの内容が
-            # python出なかったら無視
+            # pythonでなかったら無視
             continue
 
         # 送信
