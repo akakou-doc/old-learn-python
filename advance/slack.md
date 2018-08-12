@@ -26,7 +26,7 @@ pip install slackclient
 ```
 
 ## Let's Hack
-基本的に詳しくは[こちら]ということでお願いします。
+基本的に詳しくは[こちら](https://github.com/slackapi/python-slackclient)ということでお願いします。
 
 ### メッセージの送信
 
@@ -47,52 +47,55 @@ sc.api_call(
 ### メッセージの受け取り
 #### とりあえず受け取る
 ```py
-import time
+import time, sys
 from slackclient import SlackClient
 
 slack_token = 'BotsのAPIキーをここに貼る'
 sc = SlackClient(slack_token)
 
-if sc.rtm_connect():
-    while sc.server.connected is True:
-        # ここで読み込んでる
-        print(sc.rtm_read())
-        time.sleep(1)
-else:
+if not sc.rtm_connect():
     print("Connection Failed")
+    sys.exit()
+
+while sc.server.connected is True:
+    # ここで読み込んでる
+    print(sc.rtm_read())
+    time.sleep(1)
 ```
 
 辞書型の空のメッセージとか、長ったらしいメッセージが流れてくる。
 
 #### メッセージだけを抽出する
 ```py
-import time
+import time, sys
 from slackclient import SlackClient
 
 slack_token = 'BotsのAPIキーをここに貼る'
 sc = SlackClient(slack_token)
 
 
-if sc.rtm_connect():
-    while sc.server.connected is True:
-        # メッセージを取得
-        message_list = sc.rtm_read()
-        time.sleep(1)
-        
-        if not message_list:
-            # 取得したメッセージが
-            # 空だったら無視
+if not sc.rtm_connect():
+    print("Connection Failed")
+     sys.exit()
+
+
+while sc.server.connected is True:
+    # メッセージを取得
+    message_list = sc.rtm_read()
+    time.sleep(1)
+
+    if not message_list:
+        # 取得したメッセージが
+        # 空だったら無視
+        continue
+
+    for message in message_list:
+        if message["type"] != 'message':
+            # メッセージのタイプが
+            # messageじゃなかったら無視
             continue
 
-        for message in message_list:
-            if message["type"] != 'message':
-                # メッセージのタイプが
-                # messageじゃなかったら無視
-                continue
-        
-            print(message["text"])
-else:
-    print("Connection Failed")
+        print(message["text"])
 ```
 
 メッセージのテキストだけ表示されるようになった。
@@ -101,77 +104,46 @@ else:
 ### pythonってきたら、「いいぞぉ〜」って返す
 
 ```py
-import time
+import time, sys
 from slackclient import SlackClient
 
+slack_token = 'BotsのAPIキーをここに貼る'
+sc = SlackClient(slack_token)
 
-class IizoBot:
-    '''
-    「python」ってきたら「いいぞぉ〜」っていう
-    こだまでしょうか？いいえIizoBot。
-    '''
-    def __init__(self, token):
-        '''
-        Slack Clientの初期化
-        '''
-        self.sc = SlackClient(token)
+if not sc.rtm_connect():
+    print("Connection Failed")
+    sys.exit()
 
-    def send(self, channel):
-        '''
-        Slackに「いいぞぉ」って投げる
-        '''
-        self.sc.api_call(
+while sc.server.connected is True:
+    # メッセージを取得
+    message_list = sc.rtm_read()
+    time.sleep(1)
+
+    if not message_list:
+        # 取得したメッセージが
+        # 空だったら無視
+        continue
+
+    for message in message_list:
+        if message["type"] != 'message':
+            # メッセージのタイプが
+            # messageじゃなかったら無視
+            continue
+
+        if message["text"] != "python":
+            # メッセージの内容が
+            # python出なかったら無視
+            continue
+
+        # 送信
+        sc.api_call(
             "chat.postMessage",
-            channel=channel,
+            channel=message['channel'],
             text="いいぞぉ〜"
         )
 
-    def analyze(self, message_list):
-        '''
-        メッセージのリストを受け取り
-        その中から、返信すべきメッセージだけ抽出する
-        '''
-        if not message_list:
-            # 取得したメッセージが
-            # 空だったら無視
-            return []
+        print("Send !")
 
-        result = []
-        for message in message_list:
-            if message["type"] != 'message':
-                # メッセージのタイプが
-                # messageでなかったら無視
-                continue
-        
-            if message["text"] != 'python':
-                # メッセージの内容が
-                # python出なかったら無視
-                continue
-
-            result.append(message)
-
-        return result
-
-    def run(self):
-        '''実行'''
-        if not self.sc.rtm_connect():
-            # コネクションがはれなかったら無視
-            print("Connection Failed")
-            return
-
-        while self.sc.server.connected is True:
-            # メッセージを取得
-            message_list = self.sc.rtm_read()
-            time.sleep(1)
-
-            for message in self.analyze(message_list):
-                self.send(message['channel'])
-
-
-if __name__ == "__main__":
-    slack_token = 'BotsのAPIキーをここに貼る'
-    iizo_bot = IizoBot(slack_token)
-    iizo_bot.run()
 ```
 
 
