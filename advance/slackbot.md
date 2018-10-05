@@ -39,7 +39,7 @@ sc = SlackClient(slack_token)
 sc.api_call(
     "chat.postMessage",
     channel="#チャンネル名",
-    text="メッセージ
+    text="メッセージ"
 )
 
 ```
