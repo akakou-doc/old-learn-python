@@ -25,6 +25,9 @@ if-elif-else文による条件分岐、for文、while文によるループ、con
 
 に関する問題です。
 
+### [2. 3. 複合課題 解答](./homework/2-3/answer)
+[2. 3. 複合課題](./homework/2-3/question)の解答です。
+
 ## Pythonを使う
 Pythonを利用した応用例として、ちょっとしたモノをつくります。
 
