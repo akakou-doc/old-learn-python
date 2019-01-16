@@ -10,10 +10,10 @@ print関数、input関数、
 ### 実行例
 ```py
 # => 7
-print(fanc(2, 5))
+print(func(2, 5))
 
 # => 13
-print(fanc(4, 9))
+print(func(4, 9))
 ```
 
 ## 課題2

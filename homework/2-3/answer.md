@@ -5,16 +5,16 @@
 
 ### 解答例
 ```py
-def fanc(hoge, fuga):
+def func(hoge, fuga):
     # hogeとfugaを引数として受け取り
     # その和を返り値として返す
     return hoge + fuga
 
 # => 7
-print(fanc(2, 5))
+print(func(2, 5))
 
 # => 13
-print(fanc(4, 9))
+print(func(4, 9))
 ```
 
 ## 課題2
