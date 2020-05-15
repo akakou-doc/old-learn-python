@@ -45,9 +45,12 @@
       nextPageTag.href = nextPath;
     </script>
 
-    <script>
-      
-      while (document.getElementsByTagName("pre").length != 0) {
+    <script>      
+      while (true) {
+        const pres = document.getElementsByTagName("pre");
+        
+        if (pres.length == 0) break;
+
         for (const pre of pres) {
           const code = btoa(encodeURIComponent(pre.innerText));
           const editor = document.createElement('iframe');
