@@ -52,9 +52,31 @@
         if (pres.length == 0) break;
 
         for (const pre of pres) {
-          const code = btoa(encodeURIComponent(pre.innerText));
+          const data = pre.innerText.split('\n---\n')
+          
+          let code = '';
+          let input = ''
+          let expect = '';
+
+          if (data.length == 0 ) {
+            code = data
+          }
+          else {
+            code = data[0]
+            input = data[1]
+            expect = data[2]       
+            
+            if (input) 
+              input = btoa(encodeURIComponent(input));
+            
+            if (expect)
+              expect = btoa(encodeURIComponent(expect));
+          }
+
+          code = btoa(encodeURIComponent(code));
+
           const editor = document.createElement('iframe');
-          editor.src = 'https://online-python-compiler.herokuapp.com/?code=' + code
+          editor.src = `https://online-python-compiler.herokuapp.com/?code=${code}&input=${input}&except=${expect}`
           pre.parentNode.replaceChild(editor, pre);
         }
       }
