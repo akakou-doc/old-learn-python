@@ -48,7 +48,7 @@
     <script>
       const pres = document.getElementsByTagName("pre");
       for (const pre of pres) {
-        const code = btoa(unescape(encodeURIComponent(pre.innerText)));
+        const code = btoa(encodeURIComponent(pre.innerText));
         const editor = document.createElement('iframe');
         editor.src = 'https://online-python-compiler.herokuapp.com/?code=' + code
         pre.parentNode.replaceChild(editor, pre);
