@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   </head>
   <body>
+    <script>
+      var is_first = false;
+      var is_last = false;
+    </script>
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
@@ -30,19 +34,37 @@
           <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
         {% endif %}
         <span class="site-footer-credits"> <a href="/learn-python/">トップページ</a></span>
+        <span class="site-footer-credits"> <a id='prev-page'>　前のページ</a></span>
         <span class="site-footer-credits"> <a id='next-page'>　次のページ</a></span>
+
 
       </footer>
     </main>
 
     <script>
+      const prevPageTag = document.getElementById('prev-page');
       const nextPageTag = document.getElementById('next-page');
-      
+
       var nextPath = location.pathname.split('/');
       nextPath[nextPath.length -1 ] = Number(nextPath[nextPath.length-1]) + 1;
       nextPath = nextPath.join('/');
 
-      nextPageTag.href = nextPath;
+      var prevPath = location.pathname.split('/');
+      prevPath[prevPath.length -1 ] = Number(prevPath[prevPath.length-1]) - 1;
+      prevPath = prevPath.join('/');
+
+      if (!is_last) {
+        nextPageTag.href = nextPath;
+      } else {
+        nextPageTag.remove();
+      }
+      
+      if (!is_first) {
+        prevPageTag.href = prevPath;
+      } else {
+        prevPageTag.remove();
+      }
+
     </script>
 
     <script>      
