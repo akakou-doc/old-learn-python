@@ -56,27 +56,27 @@
           
           let code = '';
           let input = ''
-          let expect = '';
+          let expected = '';
 
-          if (data.length == 0 ) {
+          if (data.length == 1) {
             code = data
           }
           else {
             code = data[0]
             input = data[1]
-            expect = data[2]       
+            expected = data[2]       
             
             if (input) 
               input = btoa(encodeURIComponent(input));
             
-            if (expect)
-              expect = btoa(encodeURIComponent(expect));
+            if (expected)
+              expected = btoa(encodeURIComponent(expected));
           }
 
           code = btoa(encodeURIComponent(code));
 
           const editor = document.createElement('iframe');
-          editor.src = `https://online-python-compiler.herokuapp.com/?code=${code}&input=${input}&except=${expect}`
+          editor.src = `https://online-python-compiler.herokuapp.com/?code=${code}&input=${input}&expected=${expected}`
           pre.parentNode.replaceChild(editor, pre);
         }
       }
