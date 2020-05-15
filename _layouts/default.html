@@ -46,13 +46,16 @@
     </script>
 
     <script>
-      const pres = document.getElementsByTagName("pre");
-      for (const pre of pres) {
-        const code = btoa(encodeURIComponent(pre.innerText));
-        const editor = document.createElement('iframe');
-        editor.src = 'https://online-python-compiler.herokuapp.com/?code=' + code
-        pre.parentNode.replaceChild(editor, pre);
+      
+      while (document.getElementsByTagName("pre").length != 0) {
+        for (const pre of pres) {
+          const code = btoa(encodeURIComponent(pre.innerText));
+          const editor = document.createElement('iframe');
+          editor.src = 'https://online-python-compiler.herokuapp.com/?code=' + code
+          pre.parentNode.replaceChild(editor, pre);
+        }
       }
+
     </script>
 
     <style>
