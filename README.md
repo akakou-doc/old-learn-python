@@ -39,3 +39,8 @@ Python を利用した応用例として、ちょっとしたモノをつくり�
 ### [Slackbot を作ろう](./advance/slackbot)
 
 Python で Slackbot を作成します。
+
+<script>
+    is_first = true;
+    is_last = true;
+</script>
