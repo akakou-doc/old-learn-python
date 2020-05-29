@@ -106,14 +106,15 @@
     </script>
 
     <script>
-      history.pushState(null, null, null);
-      
-      window.addEventListener("popstate", (event) => {
+      window.addEventListener("popstate", e => {
         const hasConfirmed = confirm('ソースコードを破棄して、戻りますか？');
 
-        if (!hasConfirmed)
-          location.href = '#'
+        if (hasConfirmed)
+          location.href = event.target.nextPath;
+        else 
+          location.href = '#';
       });
+
     </script>
 
     <style>
