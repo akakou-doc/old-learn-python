@@ -109,8 +109,10 @@
       history.pushState(null, null, null);
 
       window.addEventListener("popstate", () => {
-        alert('戻るのをブロックしました')
-        history.pushState(null, null, null);
+        const hasConfirmed = confirm('ソースコードを破棄して、戻りますか？');
+
+        if (hasConfirmed)
+          history.pushState(null, null, null);
       });
     </script>
 
