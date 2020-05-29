@@ -105,6 +105,15 @@
 
     </script>
 
+    <script>
+      history.pushState(null, null, null);
+
+      window.addEventListener("popstate", () => {
+        alert('戻るのをブロックしました')
+        history.pushState(null, null, null);
+      });
+    </script>
+
     <style>
       iframe{
         height: 600px;
