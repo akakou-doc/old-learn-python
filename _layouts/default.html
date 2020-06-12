@@ -67,44 +67,6 @@
 
     </script>
 
-    <script>      
-      while (true) {
-        const pres = document.getElementsByTagName("pre");
-        
-        if (pres.length == 0) break;
-
-        for (const pre of pres) {
-          const data = pre.innerText.split('\n---\n')
-          
-          let code = '';
-          let input = ''
-          let expected = '';
-
-          if (data.length == 1) {
-            code = data
-          }
-          else {
-            code = data[0]
-            input = data[1]
-            expected = data[2]       
-            
-            if (input) 
-              input = btoa(encodeURIComponent(input));
-            
-            if (expected)
-              expected = btoa(encodeURIComponent(expected));
-          }
-
-          code = btoa(encodeURIComponent(code));
-
-          const editor = document.createElement('iframe');
-          editor.src = `https://online-python-compiler.herokuapp.com/?code=${code}&input=${input}&expected=${expected}`
-          pre.parentNode.replaceChild(editor, pre);
-        }
-      }
-
-    </script>
-
     <script>
       history.pushState(null, null, null);
 
